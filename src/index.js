@@ -8,7 +8,7 @@ const Settings = {
 
 ReactDOM.render(
     <App
-      nameMovie={Settings.NAME_MOVIE} genere={Settings.GENERE} realeseDate ={Settings.GENERE}
+      nameMovie={Settings.NAME_MOVIE} genere={Settings.GENERE} realeseDate ={Settings.REALESE_DATE}
     />,
     document.querySelector(`#root`)
 );
