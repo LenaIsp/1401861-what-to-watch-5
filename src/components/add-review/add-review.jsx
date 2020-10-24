@@ -1,10 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import AddReviewForm from "../add-review-form/add-review-form";
 
 const AddRewiev = (props) => {
+  const {films} = props;
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
-         <div className="movie-card__bg">
+        <div className="movie-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
         </div>
 
@@ -12,11 +16,11 @@ const AddRewiev = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link href="main.html" className="logo__link" to={`/`}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
@@ -43,37 +47,14 @@ const AddRewiev = (props) => {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-              <label className="rating__label" for="star-1">Rating 1</label>
-
-              <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-              <label className="rating__label" for="star-2">Rating 2</label>
-
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
-              <label className="rating__label" for="star-3">Rating 3</label>
-
-              <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-              <label className="rating__label" for="star-4">Rating 4</label>
-
-              <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-              <label className="rating__label" for="star-5">Rating 5</label>
-            </div>
-          </div>
-
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
-            </div>
-
-          </div>
-        </form>
+        <AddReviewForm films={films}/>
       </div>
     </section>
   );
+};
+
+AddRewiev.propTypes = {
+  films: PropTypes.array.isRequired
 };
 
 export default AddRewiev;
