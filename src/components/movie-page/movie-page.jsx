@@ -152,15 +152,16 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  films: PropTypes.shape({
+  films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     previewSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    ratings: PropTypes.string.isRequired,
+    ratings: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired
-  })
+    starring: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
+  }).isRequired).isRequired
 };
 
 export default MoviePage;

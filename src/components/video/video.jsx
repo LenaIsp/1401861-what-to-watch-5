@@ -14,8 +14,7 @@ class Video extends PureComponent {
     if (this.props.isActive) {
       video.play();
     } else {
-      video.src = this.props.videoSrc;
-      video.currentTime = 0;
+      video.load();
     }
   }
 
