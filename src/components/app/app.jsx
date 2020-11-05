@@ -21,10 +21,26 @@ const App = (props) => {
             onAnswer={() => {}}
           />
         </Route>
+        <Route
+          exact
+          path="/films/:id?"
+          render={(routes) => (
+            <MoviePage
+              films={films}
+              routes={routes}
+            />
+          )} />
 
-        <Route path="/login" exact>
-          <SignIn />
-        </Route>
+        <Route
+          exact
+          path="/films/:id?/review"
+          render={(routes) => (
+            <AddRewiev
+              routes={routes}
+              films={films}
+              reviews={reviews}
+            />
+          )} />
 
         <Route path="/mylist" exact>
           <MyList
@@ -32,17 +48,8 @@ const App = (props) => {
           />
         </Route>
 
-        <Route path="/films/:id?" exact>
-          <MoviePage
-            films={films}
-          />
-        </Route>
-
-        <Route path="/films/:id/review" exact>
-          <AddRewiev
-            films={films}
-            reviews={reviews}
-          />
+        <Route path="/login" exact>
+          <SignIn />
         </Route>
 
         <Route path="/player/:id?" exact>

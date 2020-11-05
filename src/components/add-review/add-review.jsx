@@ -2,47 +2,35 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AddReviewForm from "../add-review-form/add-review-form";
+import Header from "../header/header";
 
 const AddRewiev = (props) => {
-  const {films} = props;
+  const {films, routes} = props;
+  const idRoute = Number(routes.match.params.id);
+  const {id, title, previewSrc} = films[idRoute - 1];
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="title" />
         </div>
-
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <Link href="main.html" className="logo__link" to={`/`}>
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+        <Header avatar={true} login={false}>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link className="breadcrumbs__link" to={`/films/` + id}>{title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
               </li>
             </ul>
           </nav>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        </Header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={previewSrc} alt={title} width="218" height="327" />
         </div>
       </div>
 
@@ -54,7 +42,8 @@ const AddRewiev = (props) => {
 };
 
 AddRewiev.propTypes = {
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  routes: PropTypes.object.isRequired
 };
 
 export default AddRewiev;
