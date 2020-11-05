@@ -1,10 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import MovieList from "../movie-list/movie-list";
 import {Link} from "react-router-dom";
 
 const MoviePage = (props) => {
-  const {films} = props;
-  const {title, previewSrc, genre, year, ratings, description, director, starring} = films[0];
+  const {films, routes} = props;
+  const idRoute = Number(routes.match.params.id);
+  const {id, title, previewSrc, genre, year, ratings, description, director, starring} = films[idRoute - 1];
+
+
   return (
     <div>
       <section className="movie-card movie-card--full">
@@ -15,21 +21,7 @@ const MoviePage = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link href="main.html" className="logo__link" to={`/`}>
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+          <Header avatar={true} login={false}/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -41,12 +33,20 @@ const MoviePage = (props) => {
 
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
+                  </svg>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
+                  <svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                      <polygon id="+" fill="#EEE5B5" points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"></polygon>
+                    </g>
+                  </svg>
                   <span>My list</span>
                 </button>
-                <Link href="add-review.html" className="btn movie-card__button" to={`/films/1/review`}>Add review</Link>
+                <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link>
               </div>
             </div>
           </div>
@@ -94,65 +94,18 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <MovieList films = {films} />
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
 };
 
 MoviePage.propTypes = {
+  routes: PropTypes.object.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     previewSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,

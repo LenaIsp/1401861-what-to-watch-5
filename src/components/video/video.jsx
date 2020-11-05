@@ -7,12 +7,20 @@ class Video extends PureComponent {
     this._videoRef = createRef();
   }
 
+  componentWillUnmount() {
+    if (this.filmTimeout) {
+      clearTimeout(this.filmTimeout);
+    }
+  }
+
   // обновляем состоние тега видео
   componentDidUpdate() {
     const video = this._videoRef.current;
 
     if (this.props.isActive) {
-      video.play();
+      this.filmTimeout = setTimeout(() => {
+        video.play();
+      }, 1000);
     } else {
       video.load();
     }

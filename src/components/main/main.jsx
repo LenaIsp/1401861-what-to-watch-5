@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
 import GenreList from '../genre-list/genre-list';
 import {Link} from "react-router-dom";
@@ -16,24 +18,9 @@ const Main = (props) => {
         <div className="movie-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
         </div>
-
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header avatar={true} login={false}/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -42,18 +29,24 @@ const Main = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">Grand Budapest</h2>
+              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">комедия</span>
                 <span className="movie-card__year">2017</span>
               </p>
               <div className="movie-card__buttons">
                 <Link className="btn btn--play movie-card__button" to={`player`} type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19"></svg>
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
+                  </svg>
                   <span>Play</span>
                 </Link>
                 <Link className="btn btn--list movie-card__button" to={`mylist`} type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20"></svg>
+                  <svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                      <polygon id="+" fill="#EEE5B5" points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"></polygon>
+                    </g>
+                  </svg>
                   <span>My list</span>
                 </Link>
               </div>
@@ -61,6 +54,7 @@ const Main = (props) => {
           </div>
         </div>
       </section>
+
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -73,20 +67,7 @@ const Main = (props) => {
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
