@@ -8,16 +8,14 @@ import MyList from "../my-list/my-list";
 import Player from "../player/player";
 import AddRewiev from "../add-review/add-review";
 
-
 const App = (props) => {
-  const {films, reviews} = props;
+  const {reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
           <Main
-            films={films}
             onAnswer={() => {}}
           />
         </Route>
@@ -26,7 +24,6 @@ const App = (props) => {
           path="/films/:id?"
           render={(routes) => (
             <MoviePage
-              films={films}
               routes={routes}
             />
           )} />
@@ -37,15 +34,12 @@ const App = (props) => {
           render={(routes) => (
             <AddRewiev
               routes={routes}
-              films={films}
               reviews={reviews}
             />
           )} />
 
         <Route path="/mylist" exact>
-          <MyList
-            films={films}
-          />
+          <MyList />
         </Route>
 
         <Route path="/login" exact>
@@ -62,7 +56,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
 };
 

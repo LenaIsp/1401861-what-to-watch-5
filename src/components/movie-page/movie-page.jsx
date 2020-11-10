@@ -118,8 +118,8 @@ MoviePage.propTypes = {
   }).isRequired).isRequired
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films
+const mapStateToProps = ({genreChange}) => ({
+  films: genreChange.films
 });
 
 export {MoviePage};

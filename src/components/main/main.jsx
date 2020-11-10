@@ -7,11 +7,11 @@ import GenreList from '../genre-list/genre-list';
 import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {changeGenre, changeTest} from '../../store/action';
 import {sortedFilms} from '../../core';
 
 const Main = (props) => {
-  const {films, genreActive, onGenreChange, onTest, testState, genereList} = props;
+  const {films, genreActive, genreChangeAction, onTest, testState, genereList} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -59,7 +59,7 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genereList={genereList} genreActive={genreActive} onGenreChange={onGenreChange} />
+          <GenreList genereList={genereList} genreActive={genreActive} genreChangeAction={genreChangeAction} />
 
           <MovieList films={films} />
 
@@ -75,23 +75,22 @@ const Main = (props) => {
 
 Main.propTypes = {
   films: PropTypes.array.isRequired,
-  onGenreChange: PropTypes.func.isRequired,
-  genreActive: PropTypes.string.isRequired,
+  genreChangeAction: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  genreActive: state.genreActive,
-  films: sortedFilms(state),
-  genereList: state.genereList,
-  testState: state.testState,
+const mapStateToProps = ({genreChange, test}) => ({
+  genreActive: genreChange.genreActive,
+  films: sortedFilms(genreChange),
+  genereList: genreChange.genereList,
+  testState: test.testState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreChange(name) {
-    dispatch(ActionCreator.changeGenre(name));
+  genreChangeAction(name) {
+    dispatch(changeGenre(name));
   },
   onTest(name) {
-    dispatch(ActionCreator.changeTest(name));
+    dispatch(changeTest(name));
   }
 });
 
