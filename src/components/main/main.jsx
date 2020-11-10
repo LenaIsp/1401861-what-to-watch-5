@@ -75,14 +75,18 @@ const Main = (props) => {
 
 Main.propTypes = {
   films: PropTypes.array.isRequired,
-  genreChangeAction: PropTypes.func.isRequired
+  genreChangeAction: PropTypes.func.isRequired,
+  genreActive: PropTypes.string.isRequired,
+  genereList: PropTypes.array.isRequired,
+  onTest: PropTypes.func.isRequired,
+  testState: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({genreChange, test}) => ({
-  genreActive: genreChange.genreActive,
-  films: sortedFilms(genreChange),
-  genereList: genreChange.genereList,
-  testState: test.testState,
+const mapStateToProps = ({GENRE_CHANGE, TEST}) => ({
+  genreActive: GENRE_CHANGE.genreActive,
+  films: sortedFilms(GENRE_CHANGE),
+  genereList: GENRE_CHANGE.genereList,
+  testState: TEST.testState,
 });
 
 const mapDispatchToProps = (dispatch) => ({

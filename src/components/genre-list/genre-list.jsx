@@ -9,7 +9,7 @@ const GenreList = (props) => {
       <ul className="catalog__genres-list">
         {genereList.map((film, index) => {
           const className = genreActive === film ? `catalog__genres-item--active` : ``;
-          return <GenreListItem className={className} genreChangeAction={genreChangeAction} name={film} key={index}  />;
+          return <GenreListItem className={className} genreChangeAction={genreChangeAction} name={film} key={index} />;
         })}
       </ul>
     </>
@@ -18,7 +18,8 @@ const GenreList = (props) => {
 
 GenreList.propTypes = {
   genreActive: PropTypes.string.isRequired,
-  genreChangeAction: PropTypes.func.isRequired
+  genreChangeAction: PropTypes.func.isRequired,
+  genereList: PropTypes.array.isRequired,
 };
 
 export default GenreList;

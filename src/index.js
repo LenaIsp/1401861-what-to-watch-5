@@ -9,8 +9,8 @@ import rootReducer from "./store/reducer/root-reducer";
 
 // для devTools
 const store = createStore(
-  rootReducer, 
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
 ReactDOM.render(
     <Provider store={store}>

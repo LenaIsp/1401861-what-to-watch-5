@@ -1,6 +1,6 @@
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  TEST: 'TEST'
+  TEST: `TEST`
 };
 
 // функции для изменения стейта
@@ -13,4 +13,3 @@ export const changeTest = (test) => ({
   type: ActionType.TEST,
   payload: test
 });
-
