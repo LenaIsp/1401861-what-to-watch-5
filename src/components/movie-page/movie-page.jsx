@@ -1,9 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
-import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
 
 const MoviePage = (props) => {
   const {films, routes} = props;
@@ -117,4 +118,9 @@ MoviePage.propTypes = {
   }).isRequired).isRequired
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
+export {MoviePage};
+export default connect(mapStateToProps)(MoviePage);

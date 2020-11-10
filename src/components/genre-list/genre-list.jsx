@@ -1,18 +1,20 @@
 import React from 'react';
-import {genres} from '../../mocks/generes';
-import GenreListItem from '../genre-list-item/genre-list-item';
 import PropTypes from 'prop-types';
+import GenreListItem from '../genre-list-item/genre-list-item';
 
 const GenreList = (props) => {
-  const {genreActive, onGenreChange} = props;
+  const {genreActive, onGenreChange, genereList} = props;
+  console.log(genereList)
+
   return (
-    <ul className="catalog__genres-list">
-      {genres.map((genre) => {
-        const className = genreActive === genre.name ? `catalog__genres-item--active` : ``;
-        return <GenreListItem className={className} onGenreChange={onGenreChange} key={genre.id} name={genre.name} />;
-      }
-      )}
-    </ul>
+    <>
+      <ul className="catalog__genres-list">
+        {genereList.map((film, index) => {
+          const className = genreActive === film ? `catalog__genres-item--active` : ``;
+          return <GenreListItem className={className} onGenreChange={onGenreChange} name={film} key={index}  />;
+        })}
+      </ul>
+    </>
   );
 };
 

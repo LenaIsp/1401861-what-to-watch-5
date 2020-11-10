@@ -16,7 +16,7 @@ const MovieCard = (props) => {
         <Video videoSrc={videoSrc} posterSrc={posterSrc} isActive={isActive} width="280" height="175"></Video>
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`films/` + id}>{title}</Link>
+        <Link className="small-movie-card__link" to={`/films/` + id}>{title}</Link>
       </h3>
     </article>
   );

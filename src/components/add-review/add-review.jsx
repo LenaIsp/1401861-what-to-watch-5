@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AddReviewForm from "../add-review-form/add-review-form";
 import Header from "../header/header";
+import {connect} from 'react-redux';
 
 const AddRewiev = (props) => {
   const {films, routes} = props;
@@ -46,4 +47,9 @@ AddRewiev.propTypes = {
   routes: PropTypes.object.isRequired
 };
 
-export default AddRewiev;
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
+export {AddRewiev};
+export default connect(mapStateToProps)(AddRewiev);

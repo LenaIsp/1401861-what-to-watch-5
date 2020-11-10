@@ -8,10 +8,10 @@ import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {sortedFilms} from '../../store/reducer';
+import {sortedFilms} from '../../core';
 
 const Main = (props) => {
-  const {films, genreActive, onGenreChange} = props;
+  const {films, genreActive, onGenreChange, onTest, testState, genereList} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -59,12 +59,12 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genreActive={genreActive} onGenreChange={onGenreChange} />
+          <GenreList genereList={genereList} genreActive={genreActive} onGenreChange={onGenreChange} />
 
-          <MovieList films = {films} />
+          <MovieList films={films} />
 
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            <button className="catalog__button" type="button" onClick={onTest}>{testState}</button>
           </div>
         </section>
         <Footer />
@@ -81,14 +81,20 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => ({
   genreActive: state.genreActive,
-  films: sortedFilms(state)
+  films: sortedFilms(state),
+  genereList: state.genereList,
+  testState: state.testState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChange(name) {
     dispatch(ActionCreator.changeGenre(name));
+  },
+  onTest(name) {
+    dispatch(ActionCreator.changeTest(name));
   }
 });
+
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
