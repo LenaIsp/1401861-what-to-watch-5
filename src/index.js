@@ -28,14 +28,18 @@ const store = createStore(
     )
 );
 
-store.dispatch(fetchMovieList());
-store.dispatch(checkAuth());
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App
-        reviews = {reviews}
-      />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+Promise.all([
+  store.dispatch(checkAuth()),
+  store.dispatch(fetchMovieList()),
+])
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+})
+.catch(() => {
+  throw Error(`Ошибка`);
+});
