@@ -9,8 +9,7 @@ import {connect} from 'react-redux';
 const MoviePage = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, title, previewSrc, genre, year, ratings, description, director, starring} = films[idRoute - 1];
-
+  const {id, name, poster_image, genre, released, rating, description, director, starring} = films[idRoute - 1];
 
   return (
     <div>
@@ -26,10 +25,10 @@ const MoviePage = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -56,7 +55,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={previewSrc} alt={title} width="218" height="327" />
+              <img src={poster_image} alt={name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -78,7 +77,7 @@ const MoviePage = (props) => {
                 <div className="movie-rating__score">8,9</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{ratings} ratings</span>
+                  <span className="movie-rating__count">{rating} ratings</span>
                 </p>
               </div>
 
@@ -107,19 +106,19 @@ MoviePage.propTypes = {
   routes: PropTypes.object.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     previewSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     ratings: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    released: PropTypes.number.isRequired
   }).isRequired).isRequired
 };
 
-const mapStateToProps = ({genreChange}) => ({
-  films: genreChange.films
+const mapStateToProps = ({GENRE_CHANGE}) => ({
+  films: GENRE_CHANGE.films
 });
 
 export {MoviePage};

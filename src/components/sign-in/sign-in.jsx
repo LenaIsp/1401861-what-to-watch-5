@@ -1,8 +1,33 @@
-import React from "react";
+import React, {PureComponent, createRef} from "react";
+import PropTypes from "prop-types";
+import {connect} from 'react-redux';
+import {login} from "../../store/api-action";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 
-const SignIn = () => {
+class SignIn extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.loginRef = createRef();
+    this.passwordRef = createRef();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(evt) {
+    const {onSubmit} = this.props;
+
+    evt.preventDefault();
+
+    onSubmit({
+      login: this.loginRef.current.value,
+      password: this.passwordRef.current.value,
+    });
+  }
+
+  render() {
+  const {onReplayButtonClick} = this.props;
   return (
 
     <div className="user-page">
@@ -12,14 +37,30 @@ const SignIn = () => {
       </Header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form 
+        action="#" 
+        className="sign-in__form"
+        onSubmit={this.handleSubmit}
+        >
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input
+                ref={this.loginRef}
+                className="sign-in__input" 
+                type="email" 
+                placeholder="Email address" 
+                name="user-email" 
+                id="user-email" />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input
+                ref={this.passwordRef}
+                className="sign-in__input" 
+                type="password" 
+                placeholder="Password" 
+                name="user-password" 
+                id="user-password" />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -32,6 +73,18 @@ const SignIn = () => {
       <Footer />
     </div>
   );
+}
 };
 
-export default SignIn;
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(login(authData));
+  }
+});
+
+export {SignIn};
+export default connect(null, mapDispatchToProps)(SignIn);

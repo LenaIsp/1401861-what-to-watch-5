@@ -29,8 +29,8 @@ myList.propTypes = {
   films: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({genreChange}) => ({
-  films: genreChange.films
+const mapStateToProps = ({GENRE_CHANGE}) => ({
+  films: GENRE_CHANGE.films
 });
 
 export {myList};

@@ -1,13 +1,16 @@
 import {extend} from "../../../utils";
-import films from '../../../mocks/films';
 import {ActionType} from '../../action';
 import {ALL_GENRES} from '../../../const';
 import {createList} from '../../../core';
 
+// elfkbnm
+/*import films from '../../../mocks/films';*/
+
 const initialState = {
   genreActive: ALL_GENRES,
-  films,
-  genereList: createList(films)
+  films: [],
+  server: [],
+  genereList: [],
 };
 
 const genreChange = (state = initialState, action) => {
@@ -18,6 +21,10 @@ const genreChange = (state = initialState, action) => {
         genreActive: action.payload,
       });
 
+    case ActionType.LOAD_MOVIE:
+      return extend(state, {
+        films: action.payload,
+      });
   }
 
   return state;

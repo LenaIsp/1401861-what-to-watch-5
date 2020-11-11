@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
 import {changeGenre, changeTest} from '../../store/action';
-import {sortedFilms} from '../../core';
+import {sortedFilms, createList} from '../../core';
 
 const Main = (props) => {
   const {films, genreActive, genreChangeAction, onTest, testState, genereList} = props;
@@ -85,7 +85,7 @@ Main.propTypes = {
 const mapStateToProps = ({GENRE_CHANGE, TEST}) => ({
   genreActive: GENRE_CHANGE.genreActive,
   films: sortedFilms(GENRE_CHANGE),
-  genereList: GENRE_CHANGE.genereList,
+  genereList: createList(GENRE_CHANGE.films),
   testState: TEST.testState,
 });
 
