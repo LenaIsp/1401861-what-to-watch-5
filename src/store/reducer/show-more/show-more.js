@@ -7,7 +7,7 @@ const initialState = {
 
 const test = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.TEST:
+    case ActionType.SHOW_MORE:
       return extend(state, {
         testState: state.testState + 8,
       });

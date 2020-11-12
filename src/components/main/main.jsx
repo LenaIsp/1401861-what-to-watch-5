@@ -4,6 +4,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
 import GenreList from '../genre-list/genre-list';
+import ShowMore from '../show-more/show-more';
 import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
@@ -62,10 +63,8 @@ const Main = (props) => {
           <GenreList genereList={genereList} genreActive={genreActive} genreChangeAction={genreChangeAction} />
 
           <MovieList films={films} testState={testState}/>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button" onClick={onTest}>{testState}</button>
-          </div>
+          
+          <ShowMore films={films} onTest={onTest} testState={testState}/>
         </section>
         <Footer />
       </div>
@@ -82,11 +81,11 @@ Main.propTypes = {
   testState: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({GENRE_CHANGE, TEST}) => ({
+const mapStateToProps = ({GENRE_CHANGE, SHOW_MORE}) => ({
   genreActive: GENRE_CHANGE.genreActive,
   films: getGenereSelector(GENRE_CHANGE),
   genereList: createList(GENRE_CHANGE.films),
-  testState: TEST.testState,
+  testState: SHOW_MORE.testState,
 });
 
 const mapDispatchToProps = (dispatch) => ({

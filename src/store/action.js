@@ -1,6 +1,6 @@
 export const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  TEST: `TEST`,
+  SHOW_MORE: `SHOW_MORE`,
   LOAD_MOVIE: `LOAD_MOVIE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   
@@ -12,9 +12,9 @@ export const changeGenre = (name) => ({
   payload: name,
 });
 
-export const changeTest = (test) => ({
-  type: ActionType.TEST,
-  payload: test
+export const changeTest = (count) => ({
+  type: ActionType.SHOW_MORE,
+  payload: count
 });
 
 export const loadMovie = (questions) => ({
