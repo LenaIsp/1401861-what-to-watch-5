@@ -4,7 +4,6 @@ import GenreListItem from '../genre-list-item/genre-list-item';
 
 const GenreList = (props) => {
   const {genreActive, genreChangeAction, genereList} = props;
-  console.log(genereList)
   return (
     <>
       <ul className="catalog__genres-list">

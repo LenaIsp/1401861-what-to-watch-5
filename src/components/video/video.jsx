@@ -8,34 +8,31 @@ class Video extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.filmTimeout) {
-      clearTimeout(this.filmTimeout);
+    if(this.filmTimeout) {
+      clearTimeout(this.filmTimeout)
     }
   }
 
   // обновляем состоние тега видео
   componentDidUpdate() {
     const video = this._videoRef.current;
-
-    if (this.props.isActive) {
-      this.filmTimeout = setTimeout(() => {
-        video.play();
-      }, 1000);
-    } else {
-      video.load();
-    }
+    this.props.isActive
+    ? this.filmTimeout = setTimeout(() => {video.play();}, 1000)
+    : this.filmTimeout = setTimeout(() => {video.load();}, 1000)
   }
 
   render() {
-    const {posterSrc, videoSrc} = this.props;
+    const {posterSrc, videoSrc, onMouseEnter, onMouseLeave, ref} = this.props;
     return (
-      <video
-        className="player__video"
-        muted
-        poster={posterSrc}
-        src={videoSrc}
-        ref={this._videoRef}
-      />
+      <div className="small-movie-card__image" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <video
+          className="player__video"
+          muted
+          poster={posterSrc}
+          src={videoSrc}
+          ref={this._videoRef}
+        />
+      </div>
     );
   }
 }

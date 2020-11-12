@@ -15,6 +15,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 import reviews from "./mocks/reviews";
 import App from "./components/app/app";
+import Error from "./components/error/error";
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -41,5 +42,8 @@ Promise.all([
   );
 })
 .catch(() => {
-  throw Error(`Ошибка`);
+  ReactDOM.render(
+      <Error></Error>,
+      document.querySelector(`#root`)
+  );;
 });

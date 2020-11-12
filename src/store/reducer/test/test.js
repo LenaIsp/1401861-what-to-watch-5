@@ -2,14 +2,14 @@ import {extend} from "../../../utils";
 import {ActionType} from '../../action';
 
 const initialState = {
-  testState: 0,
+  testState: 8,
 };
 
 const test = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.TEST:
       return extend(state, {
-        testState: state.testState + 1,
+        testState: state.testState + 8,
       });
   }
   return state;

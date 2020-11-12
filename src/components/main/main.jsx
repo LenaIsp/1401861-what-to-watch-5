@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
 import {changeGenre, changeTest} from '../../store/action';
-import {sortedFilms, createList} from '../../core';
+import {createList, getGenereSelector} from '../../core';
 
 const Main = (props) => {
   const {films, genreActive, genreChangeAction, onTest, testState, genereList} = props;
@@ -61,7 +61,7 @@ const Main = (props) => {
 
           <GenreList genereList={genereList} genreActive={genreActive} genreChangeAction={genreChangeAction} />
 
-          <MovieList films={films} />
+          <MovieList films={films} testState={testState}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button" onClick={onTest}>{testState}</button>
@@ -84,7 +84,7 @@ Main.propTypes = {
 
 const mapStateToProps = ({GENRE_CHANGE, TEST}) => ({
   genreActive: GENRE_CHANGE.genreActive,
-  films: sortedFilms(GENRE_CHANGE),
+  films: getGenereSelector(GENRE_CHANGE),
   genereList: createList(GENRE_CHANGE.films),
   testState: TEST.testState,
 });

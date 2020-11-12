@@ -9,14 +9,17 @@ import {connect} from 'react-redux';
 const MoviePage = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, name, poster_image, genre, released, rating, description, director, starring} = films[idRoute - 1];
-
+  const {id, name, poster_image, genre, released, rating, description, director, starring, background_image, background_color, scores_count} = films[idRoute - 1];
+  const starringLastName = starring.length - 1;
+  const divStyle = {
+    backgroundColor: background_color,
+  };
   return (
     <div>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={divStyle}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={background_image} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -74,17 +77,37 @@ const MoviePage = (props) => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{rating}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{rating} ratings</span>
+                  <span className="movie-rating__level">
+                    {(() => {
+                      switch (true) {
+                        case rating >= 0 && rating < 3 : return (`Bad`);
+                        case rating >= 3 && rating < 5 : return (`Normal`);
+                        case rating >= 5 && rating < 8 : return (`Good`);
+                        case rating >= 8 && rating < 10 : return (`Very good`);
+                        case rating === 10: return (`Awesome`);
+                        default : null;
+                      }
+                    })()}
+                  </span>
+                  <span className="movie-rating__count">{scores_count} ratings</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
                 <p>{description}</p>
                 <p className="movie-card__director"><strong>Director: {director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
+                <p className="movie-card__starring">
+                  <strong>
+                    Starring:
+                    {starring.map((name, index) => (
+                      index !== starringLastName
+                      ? " " + name + ","
+                      : " " + name + " and other"
+                    ))}
+                  </strong>
+                </p>
               </div>
             </div>
           </div>

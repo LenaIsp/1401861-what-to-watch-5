@@ -9,7 +9,6 @@ import {createList} from '../../../core';
 const initialState = {
   genreActive: ALL_GENRES,
   films: [],
-  server: [],
   genereList: [],
 };
 

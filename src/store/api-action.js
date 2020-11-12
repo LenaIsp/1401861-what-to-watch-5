@@ -1,10 +1,12 @@
 import {loadMovie, requireAuthorization} from "./action";
 import {AuthorizationStatus} from "../const";
 
+// загрузка всех фильмов
 export const fetchMovieList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
     .then(({data}) => dispatch(loadMovie(data)))
 );
+
 
 // проверка авторизации
 export const checkAuth = () => (dispatch, _getState, api) => (
