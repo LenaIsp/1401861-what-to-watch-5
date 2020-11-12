@@ -8,8 +8,8 @@ class Video extends PureComponent {
   }
 
   componentWillUnmount() {
-    if(this.filmTimeout) {
-      clearTimeout(this.filmTimeout)
+    if (this.filmTimeout) {
+      clearTimeout(this.filmTimeout);
     }
   }
 
@@ -17,12 +17,16 @@ class Video extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
     this.props.isActive
-    ? this.filmTimeout = setTimeout(() => {video.play();}, 1000)
-    : this.filmTimeout = setTimeout(() => {video.load();}, 1000)
+      ? this.filmTimeout = setTimeout(() => {
+        video.play();
+      }, 1000)
+      : this.filmTimeout = setTimeout(() => {
+        video.load();
+      }, 1000);
   }
 
   render() {
-    const {posterSrc, videoSrc, onMouseEnter, onMouseLeave, ref} = this.props;
+    const {posterSrc, videoSrc, onMouseEnter, onMouseLeave} = this.props;
     return (
       <div className="small-movie-card__image" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <video
@@ -40,7 +44,9 @@ class Video extends PureComponent {
 Video.propTypes = {
   posterSrc: PropTypes.string.isRequired,
   videoSrc: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired
+  isActive: PropTypes.bool.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired
 };
 
 export default Video;

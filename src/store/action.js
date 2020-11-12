@@ -3,7 +3,6 @@ export const ActionType = {
   SHOW_MORE: `SHOW_MORE`,
   LOAD_MOVIE: `LOAD_MOVIE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  
 };
 
 // функции для изменения стейта
@@ -12,7 +11,7 @@ export const changeGenre = (name) => ({
   payload: name,
 });
 
-export const changeTest = (count) => ({
+export const changeCountFilms = (count) => ({
   type: ActionType.SHOW_MORE,
   payload: count
 });

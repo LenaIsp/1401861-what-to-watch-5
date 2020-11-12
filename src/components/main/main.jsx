@@ -8,11 +8,11 @@ import ShowMore from '../show-more/show-more';
 import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
-import {changeGenre, changeTest} from '../../store/action';
+import {changeGenre, changeCountFilms} from '../../store/action';
 import {createList, getGenereSelector} from '../../core';
 
 const Main = (props) => {
-  const {films, genreActive, genreChangeAction, onTest, testState, genereList} = props;
+  const {films, genreActive, genreChangeAction, changeCountFilmsAction, maxFilms, genereList} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -61,10 +61,8 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenreList genereList={genereList} genreActive={genreActive} genreChangeAction={genreChangeAction} />
-
-          <MovieList films={films} testState={testState}/>
-          
-          <ShowMore films={films} onTest={onTest} testState={testState}/>
+          <MovieList films={films} maxFilms={maxFilms}/>
+          <ShowMore films={films} changeCountFilmsAction={changeCountFilmsAction} maxFilms={maxFilms}/>
         </section>
         <Footer />
       </div>
@@ -77,23 +75,23 @@ Main.propTypes = {
   genreChangeAction: PropTypes.func.isRequired,
   genreActive: PropTypes.string.isRequired,
   genereList: PropTypes.array.isRequired,
-  onTest: PropTypes.func.isRequired,
-  testState: PropTypes.number.isRequired,
+  changeCountFilmsAction: PropTypes.func.isRequired,
+  maxFilms: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({GENRE_CHANGE, SHOW_MORE}) => ({
   genreActive: GENRE_CHANGE.genreActive,
   films: getGenereSelector(GENRE_CHANGE),
   genereList: createList(GENRE_CHANGE.films),
-  testState: SHOW_MORE.testState,
+  maxFilms: SHOW_MORE.maxFilms,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   genreChangeAction(name) {
     dispatch(changeGenre(name));
   },
-  onTest(name) {
-    dispatch(changeTest(name));
+  changeCountFilmsAction(name) {
+    dispatch(changeCountFilms(name));
   }
 });
 

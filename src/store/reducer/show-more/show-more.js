@@ -2,17 +2,17 @@ import {extend} from "../../../utils";
 import {ActionType} from '../../action';
 
 const initialState = {
-  testState: 8,
+  maxFilms: 8,
 };
 
-const test = (state = initialState, action) => {
+const onMaxFilms = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SHOW_MORE:
       return extend(state, {
-        testState: state.testState + 8,
+        maxFilms: state.maxFilms + 8,
       });
   }
   return state;
 };
 
-export {test};
+export {onMaxFilms};

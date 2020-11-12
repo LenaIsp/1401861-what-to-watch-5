@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main";
 import MoviePage from "../movie-page/movie-page";
@@ -9,7 +8,6 @@ import Player from "../player/player";
 import AddRewiev from "../add-review/add-review";
 
 const App = (props) => {
-  const {reviews} = props;
 
   return (
     <BrowserRouter>
@@ -34,7 +32,6 @@ const App = (props) => {
           render={(routes) => (
             <AddRewiev
               routes={routes}
-              reviews={reviews}
             />
           )} />
 
@@ -53,10 +50,6 @@ const App = (props) => {
       </Switch>
     </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  reviews: PropTypes.array.isRequired,
 };
 
 export default App;

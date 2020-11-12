@@ -13,7 +13,6 @@ import {fetchMovieList, checkAuth} from "./store/api-action";
 import {AuthorizationStatus} from "./const";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-import reviews from "./mocks/reviews";
 import App from "./components/app/app";
 import Error from "./components/error/error";
 
@@ -45,5 +44,5 @@ Promise.all([
   ReactDOM.render(
       <Error></Error>,
       document.querySelector(`#root`)
-  );;
+  );
 });

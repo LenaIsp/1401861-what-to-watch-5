@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import {genreChange} from "./genre-change/genre-change";
-import {test} from "./show-more/show-more";
+import {onMaxFilms} from "./show-more/show-more";
 import {user} from "./user/user";
 
 export const NameSpace = {
@@ -11,6 +11,6 @@ export const NameSpace = {
 
 export default combineReducers({
   [NameSpace.GENRE_CHANGE]: genreChange,
-  [NameSpace.SHOW_MORE]: test,
+  [NameSpace.SHOW_MORE]: onMaxFilms,
   [NameSpace.USER]: user,
 });

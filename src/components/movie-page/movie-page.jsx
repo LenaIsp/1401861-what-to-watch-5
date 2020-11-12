@@ -87,7 +87,7 @@ const MoviePage = (props) => {
                         case rating >= 5 && rating < 8 : return (`Good`);
                         case rating >= 8 && rating < 10 : return (`Very good`);
                         case rating === 10: return (`Awesome`);
-                        default : null;
+                        default : return null;
                       }
                     })()}
                   </span>
@@ -101,10 +101,10 @@ const MoviePage = (props) => {
                 <p className="movie-card__starring">
                   <strong>
                     Starring:
-                    {starring.map((name, index) => (
+                    {starring.map((names, index) => (
                       index !== starringLastName
-                      ? " " + name + ","
-                      : " " + name + " and other"
+                        ? ` ` + names + `,`
+                        : ` ` + names + ` and other`
                     ))}
                   </strong>
                 </p>

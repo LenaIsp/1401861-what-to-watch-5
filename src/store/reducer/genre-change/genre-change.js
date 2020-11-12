@@ -1,10 +1,6 @@
 import {extend} from "../../../utils";
 import {ActionType} from '../../action';
 import {ALL_GENRES} from '../../../const';
-import {createList} from '../../../core';
-
-// elfkbnm
-/*import films from '../../../mocks/films';*/
 
 const initialState = {
   genreActive: ALL_GENRES,
