@@ -13,9 +13,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Main
-            onAnswer={() => {}}
-          />
+          <Main />
         </Route>
         <Route
           exact

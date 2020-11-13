@@ -1,7 +1,6 @@
 import {ALL_GENRES} from './const';
 import {createSelector} from "reselect";
 
-// для redux
 const selectAll = (state) => state;
 const getGenereSelector = createSelector(
     selectAll,
@@ -23,5 +22,10 @@ const createList = (state) => {
   return genereMap;
 };
 
+const createMoreLike = (films, generes) => {
+  return films.filter((it) => {
+    return it.genre === generes;
+  });
+};
 
-export {createList, getGenereSelector};
+export {createList, createMoreLike, getGenereSelector};

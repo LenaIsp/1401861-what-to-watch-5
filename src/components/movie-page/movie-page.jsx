@@ -4,16 +4,21 @@ import PropTypes from "prop-types";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
+import Tabs from "../tabs/tabs";
 import {connect} from 'react-redux';
+import WithTabs from "../../hocs/with-tabs/with-tabs";
+import {createMoreLike} from '../../core';
 
 const MoviePage = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, name, poster_image, genre, released, rating, description, director, starring, background_image, background_color, scores_count} = films[idRoute - 1];
-  const starringLastName = starring.length - 1;
+  const {id, name, poster_image, genre, released, rating, description, director, starring, background_image, background_color, scores_count, run_time} = films[idRoute - 1];
   const divStyle = {
     backgroundColor: background_color,
   };
+  const filmsMoreLike = createMoreLike(films, genre);
+  const WrapTabs = WithTabs(Tabs);
+
   return (
     <div>
       <section className="movie-card movie-card--full" style={divStyle}>
@@ -33,7 +38,6 @@ const MoviePage = (props) => {
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{released}</span>
               </p>
-
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,55 +65,8 @@ const MoviePage = (props) => {
               <img src={poster_image} alt={name} width="218" height="327" />
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+            <WrapTabs genre={genre} released={released} rating={rating} director={director} scoresCount={scores_count} description={description} starring={starring} runTime= {run_time} />
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">
-                    {(() => {
-                      switch (true) {
-                        case rating >= 0 && rating < 3 : return (`Bad`);
-                        case rating >= 3 && rating < 5 : return (`Normal`);
-                        case rating >= 5 && rating < 8 : return (`Good`);
-                        case rating >= 8 && rating < 10 : return (`Very good`);
-                        case rating === 10: return (`Awesome`);
-                        default : return null;
-                      }
-                    })()}
-                  </span>
-                  <span className="movie-rating__count">{scores_count} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{description}</p>
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
-                <p className="movie-card__starring">
-                  <strong>
-                    Starring:
-                    {starring.map((names, index) => (
-                      index !== starringLastName
-                        ? ` ` + names + `,`
-                        : ` ` + names + ` and other`
-                    ))}
-                  </strong>
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -117,7 +74,7 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MovieList films = {films} />
+          <MovieList films = {filmsMoreLike} />
         </section>
         <Footer />
       </div>
