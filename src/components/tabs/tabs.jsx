@@ -12,20 +12,20 @@ const Tabs = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={state.tabs === TabsList.OVERVIEW ? "movie-nav__item movie-nav__item--active" : "movie-nav__item"} onClick={(evt) => handleClick(evt, TabsList.OVERVIEW)}>
+          <li className={state.tabs === TabsList.OVERVIEW ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`} onClick={(evt) => handleClick(evt, TabsList.OVERVIEW)}>
             <a href="#" className="movie-nav__link">{TabsList.OVERVIEW}</a>
           </li>
-          <li className={state.tabs === TabsList.DETAILS ? "movie-nav__item movie-nav__item--active" : "movie-nav__item"} onClick={(evt) => handleClick(evt, TabsList.DETAILS)}>
+          <li className={state.tabs === TabsList.DETAILS ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`} onClick={(evt) => handleClick(evt, TabsList.DETAILS)}>
             <a href="#" className="movie-nav__link">{TabsList.DETAILS}</a>
           </li>
-          <li className={state.tabs === TabsList.REVIEWS ? "movie-nav__item movie-nav__item--active" : "movie-nav__item"} onClick={(evt) => handleClick(evt, TabsList.REVIEWS)}>
+          <li className={state.tabs === TabsList.REVIEWS ? `movie-nav__item movie-nav__item--active` : `movie-nav__item`} onClick={(evt) => handleClick(evt, TabsList.REVIEWS)}>
             <a href="#" className="movie-nav__link">{TabsList.REVIEWS}</a>
           </li>
         </ul>
       </nav>
       {(() => {
         switch (state.tabs) {
-          case TabsList.OVERVIEW : return(<TabsOverview rating={rating} director={director} scoresCount={scoresCount} description={description} starring={starring}/>);
+          case TabsList.OVERVIEW : return (<TabsOverview rating={rating} director={director} scoresCount={scoresCount} description={description} starring={starring}/>);
           case TabsList.DETAILS : return (<TabsDetails runTime={runTime} released={released} genre={genre} director={director} starring={starring}/>);
           case TabsList.REVIEWS : return (<TabsReviews runTime={runTime} released={released} genre={genre} director={director} starring={starring}/>);
           default : return null;

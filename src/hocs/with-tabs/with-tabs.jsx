@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {TabsList} from "../../const";
 
-const WithTabs = (Component) => {
+const withTabs = (Component) => {
 
   class WithTabsActive extends PureComponent {
 
@@ -30,4 +30,4 @@ const WithTabs = (Component) => {
   return WithTabsActive;
 };
 
-export default WithTabs;
+export default withTabs;

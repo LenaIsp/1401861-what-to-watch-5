@@ -19,7 +19,7 @@ class Video extends PureComponent {
     if (this.props.isActive) {
       this.filmTimeout = setTimeout(() => {
         video.play();
-      }, 1000)
+      }, 1000);
     } else {
       clearTimeout(this.filmTimeout);
       video.load();

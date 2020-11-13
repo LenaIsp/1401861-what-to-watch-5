@@ -1,10 +1,12 @@
 import {loadMovie, requireAuthorization} from "./action";
 import {AuthorizationStatus} from "../const";
+import {adapterFilmsToClient} from '../utils';
+
 
 // загрузка всех фильмов
 export const fetchMovieList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-    .then(({data}) => dispatch(loadMovie(data)))
+    .then(({data}) => dispatch(loadMovie(data.map((film) => adapterFilmsToClient(film)))))
 );
 
 

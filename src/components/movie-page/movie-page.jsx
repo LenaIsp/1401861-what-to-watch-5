@@ -6,25 +6,25 @@ import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
 import Tabs from "../tabs/tabs";
 import {connect} from 'react-redux';
-import WithTabs from "../../hocs/with-tabs/with-tabs";
+import withTabs from "../../hocs/with-tabs/with-tabs";
 import {createMoreLike} from '../../core';
 
 const MoviePage = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, name, poster_image, genre, released, rating, description, director, starring, background_image, background_color, scores_count, run_time} = films[idRoute - 1];
+  const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime} = films[idRoute - 1];
   const divStyle = {
-    backgroundColor: background_color,
+    backgroundColors: backgroundColor
   };
   const filmsMoreLike = createMoreLike(films, genre);
-  const WrapTabs = WithTabs(Tabs);
+  const WrapTabs = withTabs(Tabs);
 
   return (
     <div>
       <section className="movie-card movie-card--full" style={divStyle}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={background_image} alt="The Grand Budapest Hotel" />
+            <img src={backgroundImage} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -62,10 +62,10 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster_image} alt={name} width="218" height="327" />
+              <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
-            <WrapTabs genre={genre} released={released} rating={rating} director={director} scoresCount={scores_count} description={description} starring={starring} runTime= {run_time} />
+            <WrapTabs genre={genre} released={released} rating={rating} director={director} scoresCount={scoresCount} description={description} starring={starring} runTime= {runTime} />
 
           </div>
         </div>
@@ -87,13 +87,17 @@ MoviePage.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    previewSrc: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    ratings: PropTypes.number.isRequired,
+    released: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired
+    backgroundImage: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    scoresCount: PropTypes.string.isRequired,
+    runTime: PropTypes.string.isRequired,
   }).isRequired).isRequired
 };
 

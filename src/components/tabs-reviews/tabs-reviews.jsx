@@ -1,41 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TabsReviews = (props) => {
-  const {rating} = props;
-
+const TabsReviews = () => {
   return (
-    <div class="movie-card__reviews movie-card__row">
-      <div class="movie-card__reviews-col">
+    <div className="movie-card__reviews movie-card__row">
+      <div className="movie-card__reviews-col">
 
-        <div class="review">
-          <blockquote class="review__quote">
-            <p class="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.</p>
-
-            <footer class="review__details">
-              <cite class="review__author">Kate Muir</cite>
-              <time class="review__date" datetime="2016-12-24">December 24, 2016</time>
+        <div className="review">
+          <blockquote className="review__quote">
+            <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.</p>
+            <footer className="review__details">
+              <cite className="review__author">Kate Muir</cite>
+              <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
             </footer>
           </blockquote>
 
-          <div class="review__rating">8,9</div>
+          <div className="review__rating">8,9</div>
         </div>
-        
       </div>
 
-      <div class="movie-card__reviews-col">
+      <div className="movie-card__reviews-col">
 
-        <div class="review">
-          <blockquote class="review__quote">
-            <p class="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
+        <div className="review">
+          <blockquote className="review__quote">
+            <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
 
-            <footer class="review__details">
-              <cite class="review__author">Matthew Lickona</cite>
-              <time class="review__date" datetime="2016-12-20">December 20, 2016</time>
+            <footer className="review__details">
+              <cite className="review__author">Matthew Lickona</cite>
+              <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
             </footer>
           </blockquote>
 
-          <div class="review__rating">7,2</div>
+          <div className="review__rating">7,2</div>
         </div>
 
       </div>

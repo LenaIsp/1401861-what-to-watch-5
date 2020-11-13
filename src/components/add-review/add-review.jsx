@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 const AddRewiev = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, name, poster_image} = films[idRoute - 1];
+  const {id, name, posterImage} = films[idRoute - 1];
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -31,7 +31,7 @@ const AddRewiev = (props) => {
         </Header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={poster_image} alt={name} width="218" height="327" />
+          <img src={posterImage} alt={name} width="218" height="327" />
         </div>
       </div>
 

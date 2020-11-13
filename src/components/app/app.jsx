@@ -7,7 +7,7 @@ import MyList from "../my-list/my-list";
 import Player from "../player/player";
 import AddRewiev from "../add-review/add-review";
 
-const App = (props) => {
+const App = () => {
 
   return (
     <BrowserRouter>
