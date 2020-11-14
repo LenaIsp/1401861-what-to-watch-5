@@ -8,5 +8,5 @@ export const AuthorizationStatus = {
 export const TabsList = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
-  REVIEWS : `Reviews`,
+  REVIEWS: `Reviews`,
 };
