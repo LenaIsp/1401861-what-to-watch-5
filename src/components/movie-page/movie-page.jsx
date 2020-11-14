@@ -74,7 +74,7 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MovieList films = {filmsMoreLike} />
+          <MovieList films={filmsMoreLike} maxFilms={4} />
         </section>
         <Footer />
       </div>
@@ -93,11 +93,11 @@ MoviePage.propTypes = {
     rating: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
     backgroundImage: PropTypes.string.isRequired,
     backgroundColor: PropTypes.string.isRequired,
-    scoresCount: PropTypes.string.isRequired,
-    runTime: PropTypes.string.isRequired,
+    scoresCount: PropTypes.number.isRequired,
+    runTime: PropTypes.number.isRequired,
   }).isRequired).isRequired
 };
 
