@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import {connect} from 'react-redux';
 
 const myList = (props) => {
   const {films} = props;
@@ -28,4 +29,9 @@ myList.propTypes = {
   films: PropTypes.array.isRequired,
 };
 
-export default myList;
+const mapStateToProps = ({GENRE_CHANGE}) => ({
+  films: GENRE_CHANGE.films
+});
+
+export {myList};
+export default connect(mapStateToProps)(myList);

@@ -1,0 +1,28 @@
+import {extend} from "../../../utils";
+import {ActionType} from '../../action';
+import {ALL_GENRES} from '../../../const';
+
+const initialState = {
+  genreActive: ALL_GENRES,
+  films: [],
+  genereList: [],
+};
+
+const genreChange = (state = initialState, action) => {
+  switch (action.type) {
+
+    case ActionType.CHANGE_GENRE:
+      return extend(state, {
+        genreActive: action.payload,
+      });
+
+    case ActionType.LOAD_MOVIE:
+      return extend(state, {
+        films: action.payload,
+      });
+  }
+
+  return state;
+};
+
+export {genreChange};

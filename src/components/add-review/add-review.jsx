@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AddReviewForm from "../add-review-form/add-review-form";
 import Header from "../header/header";
+import {connect} from 'react-redux';
 
 const AddRewiev = (props) => {
   const {films, routes} = props;
   const idRoute = Number(routes.match.params.id);
-  const {id, title, previewSrc} = films[idRoute - 1];
+  const {id, name, posterImage} = films[idRoute - 1];
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -20,7 +21,7 @@ const AddRewiev = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={`/films/` + id}>{title}</Link>
+                <Link className="breadcrumbs__link" to={`/films/` + id}>{name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -30,7 +31,7 @@ const AddRewiev = (props) => {
         </Header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={previewSrc} alt={title} width="218" height="327" />
+          <img src={posterImage} alt={name} width="218" height="327" />
         </div>
       </div>
 
@@ -46,4 +47,9 @@ AddRewiev.propTypes = {
   routes: PropTypes.object.isRequired
 };
 
-export default AddRewiev;
+const mapStateToProps = ({GENRE_CHANGE}) => ({
+  films: GENRE_CHANGE.films
+});
+
+export {AddRewiev};
+export default connect(mapStateToProps)(AddRewiev);

@@ -4,14 +4,15 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
 import GenreList from '../genre-list/genre-list';
+import ShowMore from '../show-more/show-more';
 import {Link} from "react-router-dom";
 // для redux
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
-import {sortedFilms} from '../../store/reducer';
+import {changeGenre, changeCountFilms} from '../../store/action';
+import {createList, getGenereSelector} from '../../core';
 
 const Main = (props) => {
-  const {films, genreActive, onGenreChange} = props;
+  const {films, genreActive, genreChangeAction, changeCountFilmsAction, maxFilms, genereList} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -59,13 +60,9 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genreActive={genreActive} onGenreChange={onGenreChange} />
-
-          <MovieList films = {films} />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <GenreList genereList={genereList} genreActive={genreActive} genreChangeAction={genreChangeAction} />
+          <MovieList films={films} maxFilms={maxFilms}/>
+          <ShowMore films={films} changeCountFilmsAction={changeCountFilmsAction} maxFilms={maxFilms}/>
         </section>
         <Footer />
       </div>
@@ -75,20 +72,29 @@ const Main = (props) => {
 
 Main.propTypes = {
   films: PropTypes.array.isRequired,
-  onGenreChange: PropTypes.func.isRequired,
+  genreChangeAction: PropTypes.func.isRequired,
   genreActive: PropTypes.string.isRequired,
+  genereList: PropTypes.array.isRequired,
+  changeCountFilmsAction: PropTypes.func.isRequired,
+  maxFilms: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  genreActive: state.genreActive,
-  films: sortedFilms(state)
+const mapStateToProps = ({GENRE_CHANGE, SHOW_MORE}) => ({
+  genreActive: GENRE_CHANGE.genreActive,
+  films: getGenereSelector(GENRE_CHANGE),
+  genereList: createList(GENRE_CHANGE.films),
+  maxFilms: SHOW_MORE.maxFilms,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreChange(name) {
-    dispatch(ActionCreator.changeGenre(name));
+  genreChangeAction(name) {
+    dispatch(changeGenre(name));
+  },
+  changeCountFilmsAction(name) {
+    dispatch(changeCountFilms(name));
   }
 });
+
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
