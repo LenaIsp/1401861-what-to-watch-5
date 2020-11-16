@@ -49,7 +49,7 @@ TabsOverview.propTypes = {
   director: PropTypes.string.isRequired,
   scoresCount: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
+  starring: PropTypes.array.isRequired,
 };
 
 export default TabsOverview;

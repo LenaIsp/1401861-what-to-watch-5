@@ -46,7 +46,7 @@ Tabs.propTypes = {
   released: PropTypes.number.isRequired,
   runTime: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
-  state: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
 };
 
 export default Tabs;
