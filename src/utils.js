@@ -10,6 +10,12 @@ export const convertMinutes = (duration) => {
   return `${hours}h ${minutes}m`;
 };
 
+export const convertSecond = (duration) => {
+  const minutes = Math.floor(duration / HOURS);
+  const second = duration - minutes * HOURS;
+  return `${minutes}:${second}`;
+};
+
 export const adapterFilmsToClient = (filmsData) => {
   const adapterFilms = {
     name: filmsData.name,
