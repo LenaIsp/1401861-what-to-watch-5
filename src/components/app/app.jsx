@@ -4,8 +4,8 @@ import Main from "../main/main";
 import MoviePage from "../movie-page/movie-page";
 import SignIn from "../sign-in/sign-in";
 import MyList from "../my-list/my-list";
-import Player from "../player/player";
 import AddRewiev from "../add-review/add-review";
+import PlayerPage from "../player-page/player-page";
 
 const App = () => {
 
@@ -41,9 +41,16 @@ const App = () => {
           <SignIn />
         </Route>
 
-        <Route path="/player/:id?" exact>
-          <Player />
-        </Route>
+        <Route
+          exact
+          path="/player/:id?"
+          render={(routes) => (
+            <PlayerPage
+              routes={routes}
+              onReplayButtonClick={() => routes.history.goBack()}
+            />
+          )}
+        />
 
       </Switch>
     </BrowserRouter>
