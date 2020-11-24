@@ -1,4 +1,4 @@
-import {loadMovie, requireAuthorization} from "./action";
+import {loadMovie, requireAuthorization, redirectToRoute} from "./action";
 import {AuthorizationStatus} from "../const";
 import {adapterFilmsToClient} from '../utils';
 
@@ -18,7 +18,11 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 );
 
 // отправляем данные на сервер
-export const login = ({login: email, password}) => (dispatch, _getState, api) => (
+export const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(`/`)))
+    .catch(() => {
+      throw Error(`Ошибка авторизации`);
+    })
 );

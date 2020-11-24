@@ -3,6 +3,7 @@ export const ActionType = {
   SHOW_MORE: `SHOW_MORE`,
   LOAD_MOVIE: `LOAD_MOVIE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 // функции для изменения стейта
@@ -24,4 +25,9 @@ export const loadMovie = (questions) => ({
 export const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
 });

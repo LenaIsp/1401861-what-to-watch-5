@@ -10,3 +10,13 @@ export const TabsList = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
+
+export const AppPath = {
+  index: `/`,
+  login: `/login`,
+  mylist: `/mylist`,
+  film: `/films/:id`,
+  player: `/player`,
+  playerFull: `/player/:id`,
+  review: `/films/:id/review`
+};
