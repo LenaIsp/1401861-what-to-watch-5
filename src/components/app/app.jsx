@@ -1,20 +1,36 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main";
 import MoviePage from "../movie-page/movie-page";
 import SignIn from "../sign-in/sign-in";
 import MyList from "../my-list/my-list";
 import AddRewiev from "../add-review/add-review";
 import PlayerPage from "../player-page/player-page";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
+import withLogin from "../../hocs/with-login/with-login";
+
+const SignInWrapped = withLogin(SignIn);
 
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/" >
           <Main />
         </Route>
+
+        <Route path="/login" exact>
+          <SignInWrapped />
+        </Route>
+
+        <PrivateRoute
+          exact
+          path="/mylist"
+          render={() => <MyList/>}
+        />
+
         <Route
           exact
           path="/films/:id?"
@@ -22,24 +38,18 @@ const App = () => {
             <MoviePage
               routes={routes}
             />
-          )} />
+          )}
+        />
 
-        <Route
+        <PrivateRoute
           exact
           path="/films/:id?/review"
-          render={(routes) => (
-            <AddRewiev
-              routes={routes}
-            />
-          )} />
-
-        <Route path="/mylist" exact>
-          <MyList />
-        </Route>
-
-        <Route path="/login" exact>
-          <SignIn />
-        </Route>
+          render={(routes) => {
+            return (
+              <AddRewiev routes={routes} />
+            );
+          }}
+        />
 
         <Route
           exact

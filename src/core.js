@@ -28,4 +28,8 @@ const createMoreLike = (films, generes) => {
   });
 };
 
-export {createList, createMoreLike, getGenereSelector};
+const getAuthStatus = (state) => {
+  return state.USER.authorizationStatus;
+};
+
+export {createList, createMoreLike, getGenereSelector, getAuthStatus};
