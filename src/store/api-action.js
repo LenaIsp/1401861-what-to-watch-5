@@ -7,7 +7,7 @@ import {adapterFilmsToClient} from '../utils';
 export const fetchMovieList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
     .then(({data}) => {
-      dispatch(loadMovie(data.map((film) => adapterFilmsToClient(film))))
+      dispatch(loadMovie(data.map((film) => adapterFilmsToClient(film))));
     })
     .catch(() => {
       throw Error(`Ошибка загрузки фильмов`);
@@ -18,7 +18,7 @@ export const fetchMovieList = () => (dispatch, _getState, api) => (
 export const fetchSingleMovie = (id) => (dispatch, _getState, api) => (
   api.get(`/films/${id}`)
     .then(({data}) => {
-      dispatch(loadSingleMovie(adapterFilmsToClient(data)))
+      dispatch(loadSingleMovie(adapterFilmsToClient(data)));
     })
     .catch(() => {
       throw Error(`Ошибка загрузки фильма`);
@@ -29,13 +29,12 @@ export const fetchSingleMovie = (id) => (dispatch, _getState, api) => (
 export const fetchMoviePromo = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
     .then(({data}) => {
-      dispatch(loadPromo(adapterFilmsToClient(data)))
+      dispatch(loadPromo(adapterFilmsToClient(data)));
     })
     .catch(() => {
       throw Error(`Ошибка загрузки промо`);
     })
 );
-
 
 // загрузка списка комментариев
 export const fetchComments = (id) => (dispatch, _getState, api) => (
@@ -67,11 +66,11 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     })
 );
 
-// добавляем в избранное в избранное
+// добавляем в избранное
 export const addFavorite = (id, status, isPromo) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
     .then(({data}) => {
-      if (isPromo === "true") {
+      if (isPromo === `true`) {
         dispatch(loadPromo(adapterFilmsToClient(data)));
       } else {
         dispatch(loadSingleMovie(adapterFilmsToClient(data)));

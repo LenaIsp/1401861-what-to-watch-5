@@ -33,6 +33,10 @@ const ButtonAddFavorite = (props) => {
 };
 
 ButtonAddFavorite.propTypes = {
+  id: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  isPromo: PropTypes.string.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

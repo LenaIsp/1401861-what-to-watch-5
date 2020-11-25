@@ -79,6 +79,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     released: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
   }),
 };
 
