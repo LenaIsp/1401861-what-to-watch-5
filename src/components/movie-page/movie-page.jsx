@@ -32,7 +32,7 @@ class MoviePage extends PureComponent {
   render() {
     const {films, activeFilm, reviews} = this.props;
     const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime} = activeFilm;
-    const MAX_FILM = 4;
+    const MAX_FILM = 5;
     if (!starring) {
       return null;
     }
@@ -91,7 +91,7 @@ class MoviePage extends PureComponent {
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <MovieList films={films} maxFilms={MAX_FILM} />
+            <MovieList films={films} maxFilms={MAX_FILM} id={id}/>
           </section>
           <Footer />
         </div>
