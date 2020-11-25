@@ -53,7 +53,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {
-      throw Error(`Ошибка авторизации`)
+      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     })
 );
 
@@ -64,6 +64,21 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(redirectToRoute(`/`)))
     .catch(() => {
       throw Error(`Ошибка отправки данных`);
+    })
+);
+
+// добавляем в избранное в избранное
+export const addFavorite = (id, status, isPromo) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
+    .then(({data}) => {
+      if (isPromo === "true") {
+        dispatch(loadPromo(adapterFilmsToClient(data)));
+      } else {
+        dispatch(loadSingleMovie(adapterFilmsToClient(data)));
+      }
+    })
+    .catch(() => {
+      throw Error(`Ошибка отправки избранного`);
     })
 );
 

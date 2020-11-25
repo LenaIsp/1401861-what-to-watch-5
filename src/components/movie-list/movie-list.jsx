@@ -18,6 +18,10 @@ const MovieList = (props) => {
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
   maxFilms: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.any.isRequired
+  ]),
 };
 
 export default MovieList;

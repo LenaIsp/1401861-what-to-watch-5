@@ -5,6 +5,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import MovieList from "../movie-list/movie-list";
 import Tabs from "../tabs/tabs";
+import ButtonAddFavorite from "../button-add-favorite/button-add-favorite";
 import {connect} from 'react-redux';
 import withTabs from "../../hocs/with-tabs/with-tabs";
 import {createMoreLike} from '../../core';
@@ -31,7 +32,7 @@ class MoviePage extends PureComponent {
 
   render() {
     const {films, activeFilm, reviews} = this.props;
-    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime} = activeFilm;
+    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime, isFavorite} = activeFilm;
     const MAX_FILM = 5;
     if (!starring) {
       return null;
@@ -62,14 +63,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </Link>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                        <polygon id="+" fill="#EEE5B5" points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"></polygon>
-                      </g>
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  <ButtonAddFavorite isFavorite={isFavorite} id={id} isPromo="false"/>
                   <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link>
                 </div>
               </div>
@@ -121,7 +115,7 @@ MoviePage.propTypes = {
       scoresCount: PropTypes.number.isRequired,
       runTime: PropTypes.number.isRequired,
     }),
-    PropTypes.array,
+    PropTypes.array
   ]),
 };
 

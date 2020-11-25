@@ -30,6 +30,7 @@ const store = createStore(
     )
 );
 
+
 Promise.all([
   store.dispatch(checkAuth()),
   store.dispatch(fetchMovieList()),

@@ -42,7 +42,6 @@ export const loadPromo = (film) => ({
   payload: film,
 });
 
-
 export const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,

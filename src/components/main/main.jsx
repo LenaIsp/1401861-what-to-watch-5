@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import ButtonAddFavorite from "../button-add-favorite/button-add-favorite";
 import MovieList from "../movie-list/movie-list";
 import GenreList from '../genre-list/genre-list';
 import ShowMore from '../show-more/show-more';
@@ -13,7 +14,7 @@ import {createList, getGenereSelector} from '../../core';
 
 const Main = (props) => {
   const {films, genreActive, genreChangeAction, changeCountFilmsAction, maxFilms, genereList, promo} = props;
-  const {name, posterImage, backgroundImage, genre, released, id} = promo;
+  const {name, posterImage, backgroundImage, genre, released, id, isFavorite} = promo;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -43,14 +44,7 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link className="btn btn--list movie-card__button" to={`mylist`} type="button">
-                  <svg width="19px" height="20px" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                      <polygon id="+" fill="#EEE5B5" points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"></polygon>
-                    </g>
-                  </svg>
-                  <span>My list</span>
-                </Link>
+                <ButtonAddFavorite isFavorite={isFavorite} id={id} isPromo="true"/>
               </div>
             </div>
           </div>
