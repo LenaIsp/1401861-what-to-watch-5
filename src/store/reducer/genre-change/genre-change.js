@@ -6,6 +6,9 @@ const initialState = {
   genreActive: ALL_GENRES,
   films: [],
   genereList: [],
+  activeFilm: [],
+  reviews: [],
+  promo: [],
 };
 
 const genreChange = (state = initialState, action) => {
@@ -19,6 +22,21 @@ const genreChange = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE:
       return extend(state, {
         films: action.payload,
+      });
+
+    case ActionType.LOAD_SINGLE_MOVIE:
+      return extend(state, {
+        activeFilm: action.payload,
+      });
+
+    case ActionType.LOAD_MOVIE_COMMENTS:
+      return extend(state, {
+        reviews: action.payload,
+      });
+
+    case ActionType.LOAD_PROMO:
+      return extend(state, {
+        promo: action.payload,
       });
   }
 

@@ -12,12 +12,13 @@ import {changeGenre, changeCountFilms} from '../../store/action';
 import {createList, getGenereSelector} from '../../core';
 
 const Main = (props) => {
-  const {films, genreActive, genreChangeAction, changeCountFilmsAction, maxFilms, genereList} = props;
+  const {films, genreActive, genreChangeAction, changeCountFilmsAction, maxFilms, genereList, promo} = props;
+  const {name, posterImage, backgroundImage, genre, released, id} = promo;
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={backgroundImage} alt="The Grand Budapest Hotel" />
         </div>
         <h1 className="visually-hidden">WTW</h1>
 
@@ -26,17 +27,17 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">комедия</span>
-                <span className="movie-card__year">2017</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
               <div className="movie-card__buttons">
-                <Link className="btn btn--play movie-card__button" to={`player`} type="button">
+                <Link className="btn btn--play movie-card__button" to={`/player/${id}`} type="button">
                   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M0 0L19 9.5L0 19V0Z" fill="#EEE5B5"/>
                   </svg>
@@ -77,6 +78,14 @@ Main.propTypes = {
   genereList: PropTypes.array.isRequired,
   changeCountFilmsAction: PropTypes.func.isRequired,
   maxFilms: PropTypes.number.isRequired,
+  promo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
 };
 
 const mapStateToProps = ({GENRE_CHANGE, SHOW_MORE}) => ({
@@ -84,6 +93,7 @@ const mapStateToProps = ({GENRE_CHANGE, SHOW_MORE}) => ({
   films: getGenereSelector(GENRE_CHANGE),
   genereList: createList(GENRE_CHANGE.films),
   maxFilms: SHOW_MORE.maxFilms,
+  promo: GENRE_CHANGE.promo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

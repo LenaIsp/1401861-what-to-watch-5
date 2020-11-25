@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {convertSecond} from "../../utils";
 
 const Player = (props) => {
   const {films, routes, onReplayButtonClick, handleClickPlay, handleClickPause, handleClickFullScreen, player, children, duration, currentTime} = props;
   const idRoute = Number(routes.match.params.id);
   const {name} = films[idRoute - 1];
   const progress = currentTime / duration * 100;
+  const SubstringElapsed = {
+    START: 8,
+    END: 11,
+  };
+  const MS_IN_S = 1000;
+  const time = new Date((duration - currentTime) * MS_IN_S).toISOString().substr(SubstringElapsed.END, SubstringElapsed.START);
 
   return (
     <div className="player">
@@ -15,10 +20,10 @@ const Player = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max="100"></progress>
+            <progress className="player__progress" value={!progress ? 0 : progress} max="100"></progress>
             <div className="player__toggler" style={{left: progress + `%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">{convertSecond(duration)}</div>
+          <div className="player__time-value">{time}</div>
         </div>
 
         <div className="player__controls-row">

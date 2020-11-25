@@ -10,12 +10,6 @@ export const convertMinutes = (duration) => {
   return `${hours}h ${minutes}m`;
 };
 
-export const convertSecond = (duration) => {
-  const minutes = Math.floor(duration / HOURS);
-  const second = duration - minutes * HOURS;
-  return `${minutes}:${second}`;
-};
-
 export const adapterFilmsToClient = (filmsData) => {
   const adapterFilms = {
     name: filmsData.name,
@@ -37,4 +31,24 @@ export const adapterFilmsToClient = (filmsData) => {
     starring: filmsData.starring
   };
   return adapterFilms;
+};
+
+export const convertDate = (timeStamp) => {
+  const months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+
+  let day = timeStamp.slice(8, 10);
+  if (day[0] === `0`) {
+    day = day.substr(1);
+  }
+
+  let monthNumber = timeStamp.slice(5, 7);
+  if (monthNumber[0] === `0`) {
+    monthNumber = monthNumber.substr(1);
+  }
+  const monthName = months[monthNumber - 1];
+
+  const year = timeStamp.slice(0, 4);
+
+  const date = `${monthName} ${day}, ${year}`;
+  return date;
 };

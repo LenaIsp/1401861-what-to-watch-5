@@ -6,7 +6,7 @@ import TabsReviews from "../tabs-reviews/tabs-reviews";
 import {TabsList} from "../../const";
 
 const Tabs = (props) => {
-  const {rating, director, scoresCount, description, starring, genre, released, runTime, handleClick, state} = props;
+  const {rating, director, scoresCount, description, starring, genre, released, runTime, handleClick, state, reviews} = props;
 
   return (
     <div className="movie-card__desc">
@@ -27,7 +27,7 @@ const Tabs = (props) => {
         switch (state.tabs) {
           case TabsList.OVERVIEW : return (<TabsOverview rating={rating} director={director} scoresCount={scoresCount} description={description} starring={starring}/>);
           case TabsList.DETAILS : return (<TabsDetails runTime={runTime} released={released} genre={genre} director={director} starring={starring}/>);
-          case TabsList.REVIEWS : return (<TabsReviews runTime={runTime} released={released} genre={genre} director={director} starring={starring}/>);
+          case TabsList.REVIEWS : return (<TabsReviews reviews={reviews} runTime={runTime} released={released} genre={genre} director={director} starring={starring}/>);
           default : return null;
         }
       })()}
@@ -47,6 +47,7 @@ Tabs.propTypes = {
   runTime: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
   state: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default Tabs;
