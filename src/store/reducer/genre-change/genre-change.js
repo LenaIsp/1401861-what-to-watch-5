@@ -46,12 +46,12 @@ const genreChange = (state = initialState, action) => {
       return extend(state, {
         favorites: action.payload,
       });
-    
+
     case ActionType.SET_DATA_IS_SENDING:
       return extend(state, {
         isDataSending: action.payload,
       });
-    
+
     case ActionType.SET_DATA_SEND_EROR:
       return extend(state, {
         isDataSendError: action.payload,

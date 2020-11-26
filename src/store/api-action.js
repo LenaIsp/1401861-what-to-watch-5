@@ -2,7 +2,6 @@ import {loadMovie, requireAuthorization, redirectToRoute, loadSingleMovie, loadM
 import {AuthorizationStatus} from "../const";
 import {adapterFilmsToClient, adapterUserToClient} from '../utils';
 
-
 // загрузка всех фильмов
 export const fetchMovieList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -74,8 +73,12 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
 export const addFavorite = (id, status, isPromo) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
     .then(({data}) => {
+      if (isPromo === `true`) {
         dispatch(loadPromo(adapterFilmsToClient(data)));
+      } else {
         dispatch(loadSingleMovie(adapterFilmsToClient(data)));
+        dispatch(fetchMoviePromo());
+      }
     })
     .catch(() => {
       throw Error(`Ошибка отправки избранного`);

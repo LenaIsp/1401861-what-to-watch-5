@@ -8,13 +8,14 @@ import {connect} from 'react-redux';
 import {fetchFavorites} from '../../store/api-action';
 
 const myList = (props) => {
-  const {films, onFavoritesLoad, favorites} = props;
-  if(!favorites) {
-    null
+  const {onFavoritesLoad, favorites} = props;
+  if (!favorites) {
+    return null;
   }
   useEffect(() => {
-      onFavoritesLoad();
-    }, []);
+    onFavoritesLoad();
+  }, []);
+
   return (
     <div className="user-page">
       <Header login={true} avatar={true}>
@@ -34,7 +35,8 @@ const myList = (props) => {
 };
 
 myList.propTypes = {
-  films: PropTypes.array.isRequired,
+  onFavoritesLoad: PropTypes.func.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({GENRE_CHANGE}) => ({

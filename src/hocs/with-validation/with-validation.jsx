@@ -2,11 +2,11 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 const Review = {
-    MIN_RATING: 1,
-    TEXT: {
-      MIN_LENGTH: 50,
-      MAX_LENGTH: 400,
-    },
+  MIN_RATING: 1,
+  TEXT: {
+    MIN_LENGTH: 50,
+    MAX_LENGTH: 400,
+  },
 };
 const validateText = (reviewText) => {
   return reviewText.length >= Review.TEXT.MIN_LENGTH && reviewText.length <= Review.TEXT.MAX_LENGTH;

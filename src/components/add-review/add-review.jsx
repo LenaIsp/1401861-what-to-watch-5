@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import Header from "../header/header";
@@ -9,10 +9,9 @@ import {setDataIsSending} from "../../store/action";
 const REVIEW_RATINGS = [1, 2, 3, 4, 5];
 
 const AddRewiev = (props) => {
-  const { onFormSubmit, onReviewChange, onRatingChange, isDataSending, isDataSendError, isValid, rating, reviewText, films, routes,
-  } = props;
-  const filmsId = films[routes.match.params.id - 1]
-  const {id} = filmsId
+  const {onFormSubmit, onReviewChange, onRatingChange, isDataSending, isDataSendError, isValid, rating, reviewText, films, routes} = props;
+  const filmsId = films[routes.match.params.id - 1];
+  const {id} = filmsId;
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
@@ -94,12 +93,20 @@ const AddRewiev = (props) => {
 
 AddRewiev.propTypes = {
   films: PropTypes.array.isRequired,
-  routes: PropTypes.object.isRequired
+  routes: PropTypes.object.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
+  isDataSending: PropTypes.bool.isRequired,
+  isDataSendError: PropTypes.bool.isRequired,
+  isValid: PropTypes.bool.isRequired,
+  reviewText: PropTypes.string.isRequired,
+  rating: PropTypes.node,
+  onReviewChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({GENRE_CHANGE}) => ({
   films: GENRE_CHANGE.films,
-  isDataSending: GENRE_CHANGE.isDataSending, 
+  isDataSending: GENRE_CHANGE.isDataSending,
   isDataSendError: GENRE_CHANGE.isDataSendError
 });
 

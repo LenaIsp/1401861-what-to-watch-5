@@ -8,7 +8,7 @@ const MovieCard = (props) => {
   const {films} = props;
   const {previewImage, name, id, previewVideoLink} = films;
   const VideoWrap = withActiveItem(Video);
-  return (    
+  return (
     <article className="small-movie-card catalog__movies-card">
       <Link className="small-movie-card__link" to={`/films/` + id}>
         <VideoWrap videoSrc={previewVideoLink} posterSrc={previewImage} width="280" height="175" />
