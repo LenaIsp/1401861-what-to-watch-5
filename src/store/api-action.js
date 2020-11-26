@@ -1,6 +1,6 @@
-import {loadMovie, requireAuthorization, redirectToRoute, loadSingleMovie, loadMovieComments, loadPromo} from "./action";
+import {loadMovie, requireAuthorization, redirectToRoute, loadSingleMovie, loadMovieComments, loadPromo, loadUser, loadFavorites, setDataIsSending, setDataSendError} from "./action";
 import {AuthorizationStatus} from "../const";
-import {adapterFilmsToClient} from '../utils';
+import {adapterFilmsToClient, adapterUserToClient} from '../utils';
 
 
 // загрузка всех фильмов
@@ -47,10 +47,14 @@ export const fetchComments = (id) => (dispatch, _getState, api) => (
     })
 );
 
+
 // проверка авторизации
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(({data}) => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadUser(adapterUserToClient(data)));
+    })
     .catch(() => {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     })
@@ -70,14 +74,35 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
 export const addFavorite = (id, status, isPromo) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
     .then(({data}) => {
-      if (isPromo === `true`) {
         dispatch(loadPromo(adapterFilmsToClient(data)));
-      } else {
         dispatch(loadSingleMovie(adapterFilmsToClient(data)));
-      }
     })
     .catch(() => {
       throw Error(`Ошибка отправки избранного`);
+    })
+);
+
+export const addReview = (id, rating, comment) => (dispatch, _getState, api) => (
+  api.post(`/comments` + `/${id}`, {rating, comment})
+    .then(() => {
+      dispatch(setDataSendError(false));
+      dispatch(redirectToRoute(`/films` + `/${id}`));
+      dispatch(setDataIsSending(false));
+    })
+    .catch(() => {
+      dispatch(setDataIsSending(false));
+      dispatch(setDataSendError(true));
+    })
+);
+
+// загрузка избранных фильмов
+export const fetchFavorites = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => {
+      dispatch(loadFavorites(data.map((film) => adapterFilmsToClient(film))));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загрузки избранных фильмов`);
     })
 );
 

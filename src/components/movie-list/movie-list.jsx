@@ -17,10 +17,13 @@ const MovieList = (props) => {
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
-  maxFilms: PropTypes.number.isRequired,
+  maxFilms: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.node
+  ]),
   id: PropTypes.oneOfType([
     PropTypes.number.isRequired,
-    PropTypes.any.isRequired
+    PropTypes.node
   ]),
 };
 

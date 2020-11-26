@@ -9,6 +9,9 @@ const initialState = {
   activeFilm: [],
   reviews: [],
   promo: [],
+  favorites: [],
+  isDataSending: false,
+  isDataSendError: false,
 };
 
 const genreChange = (state = initialState, action) => {
@@ -37,6 +40,21 @@ const genreChange = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return extend(state, {
         promo: action.payload,
+      });
+
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
+      });
+    
+    case ActionType.SET_DATA_IS_SENDING:
+      return extend(state, {
+        isDataSending: action.payload,
+      });
+    
+    case ActionType.SET_DATA_SEND_EROR:
+      return extend(state, {
+        isDataSendError: action.payload,
       });
   }
 

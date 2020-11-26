@@ -32,6 +32,15 @@ export const adapterFilmsToClient = (filmsData) => {
   };
   return adapterFilms;
 };
+export const adapterUserToClient = (userData) => {
+  const adapterUSer = {
+    id: userData.id,
+    email: userData.email,
+    name: userData.name,
+    avatarUrl: userData.avatar_url,
+  };
+  return adapterUSer;
+};
 
 export const convertDate = (timeStamp) => {
   const months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];

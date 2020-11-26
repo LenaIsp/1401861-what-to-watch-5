@@ -8,12 +8,14 @@ const MovieCard = (props) => {
   const {films} = props;
   const {previewImage, name, id, previewVideoLink} = films;
   const VideoWrap = withActiveItem(Video);
-  return (
+  return (    
     <article className="small-movie-card catalog__movies-card">
-      <VideoWrap videoSrc={previewVideoLink} posterSrc={previewImage} width="280" height="175" />
-      <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`/films/` + id}>{name}</Link>
-      </h3>
+      <Link className="small-movie-card__link" to={`/films/` + id}>
+        <VideoWrap videoSrc={previewVideoLink} posterSrc={previewImage} width="280" height="175" />
+        <h3 className="small-movie-card__title">
+          <span className="small-movie-card__link">{name}</span>
+        </h3>
+      </Link>
     </article>
   );
 };

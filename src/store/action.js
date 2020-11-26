@@ -8,7 +8,13 @@ export const ActionType = {
   LOAD_PROMO: `LOAD_PROMO`,
 
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOAD_USER: `LOAD_USER`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+
+  SET_DATA_IS_SENDING: `SET_DATA_IS_SENDING`,
+  SET_DATA_SEND_EROR: `SET_DATA_SEND_EROR`,
 };
 
 // функции для изменения стейта
@@ -47,7 +53,27 @@ export const requireAuthorization = (status) => ({
   payload: status,
 });
 
+export const loadUser = (status) => ({
+  type: ActionType.LOAD_USER,
+  payload: status,
+});
+
+export const loadFavorites = (favorites) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favorites,
+});
+
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const setDataIsSending = (bool) => ({
+  type: ActionType.SET_DATA_IS_SENDING,
+  payload: bool
+});
+
+export const setDataSendError = (bool) => ({
+  type: ActionType.SET_DATA_SEND_EROR,
+  payload: bool
 });
