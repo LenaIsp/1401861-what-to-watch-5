@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 
 import {createAPI} from "./services/api";
 import {requireAuthorization} from "./store/action";
-import {fetchMovieList, checkAuth} from "./store/api-action";
+import {fetchMovieList, checkAuth, fetchMoviePromo} from "./store/api-action";
 import {AuthorizationStatus} from "./const";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {redirect} from "./store/middlewares/redirect";
@@ -30,9 +30,11 @@ const store = createStore(
     )
 );
 
+
 Promise.all([
   store.dispatch(checkAuth()),
   store.dispatch(fetchMovieList()),
+  store.dispatch(fetchMoviePromo()),
 ])
 .then(() => {
   ReactDOM.render(

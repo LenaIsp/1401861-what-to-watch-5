@@ -73,10 +73,9 @@ const withPlayer = (Component) => {
     }
   }
 
-
   WithPlayer.propTypes = {
     films: PropTypes.array.isRequired,
-    routes: PropTypes.array.isRequired,
+    routes: PropTypes.object.isRequired,
   };
   return WithPlayer;
 };

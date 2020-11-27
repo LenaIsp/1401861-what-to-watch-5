@@ -36,6 +36,8 @@ class Video extends PureComponent {
           poster={posterSrc}
           src={videoSrc}
           ref={this._videoRef}
+          width="280"
+          height="175"
         />
       </div>
     );

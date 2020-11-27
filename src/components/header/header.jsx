@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import User from '../user/user';
 
 const Header = (props) => {
-  const {login, avatar} = props;
+  const {login, avatar, children} = props;
   return (
     <header className={login ? `page-header user-page__head` : `page-header movie-card__head`}>
       <div className="logo">
@@ -14,15 +15,10 @@ const Header = (props) => {
         </Link>
       </div>
 
-      {props.children}
+      {children}
 
       {avatar
-        ?
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        ? <User />
         : null
       }
     </header>
@@ -32,7 +28,7 @@ const Header = (props) => {
 Header.propTypes = {
   login: PropTypes.bool.isRequired,
   avatar: PropTypes.bool.isRequired,
-  children: PropTypes.object.isRequired
+  children: PropTypes.node
 };
 
 export default Header;

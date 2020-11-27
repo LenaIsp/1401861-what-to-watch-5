@@ -8,7 +8,9 @@ import AddRewiev from "../add-review/add-review";
 import PlayerPage from "../player-page/player-page";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
+import withValidation from "../../hocs/with-validation/with-validation";
 import withLogin from "../../hocs/with-login/with-login";
+const AddReviewWrap = withValidation(AddRewiev);
 
 const SignInWrapped = withLogin(SignIn);
 
@@ -46,7 +48,7 @@ const App = () => {
           path="/films/:id?/review"
           render={(routes) => {
             return (
-              <AddRewiev routes={routes} />
+              <AddReviewWrap routes={routes} />
             );
           }}
         />

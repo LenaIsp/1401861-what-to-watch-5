@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card";
 
 const MovieList = (props) => {
-  const {films, maxFilms} = props;
+  const {films, maxFilms, id} = props;
   return (
     <div className="catalog__movies-list">
       {films.map((film, i) => (
-        i + 1 > maxFilms
+        i + 1 > maxFilms || film.id === id
           ? null
           : <MovieCard films={film} key={i}/>
       ))}
@@ -17,7 +17,14 @@ const MovieList = (props) => {
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
-  maxFilms: PropTypes.number.isRequired,
+  maxFilms: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.node
+  ]),
+  id: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.node
+  ]),
 };
 
 export default MovieList;
