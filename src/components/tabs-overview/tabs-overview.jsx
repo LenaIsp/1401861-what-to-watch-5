@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 const TabsOverview = (props) => {
   const {rating, director, scoresCount, description, starring} = props;
   const starringLastName = starring.length - 1;
+  const Ratings = {
+    START: 0,
+    BAD: 3,
+    NORMAL: 5,
+    GOOD: 8,
+    VERY_GOOD: 10,
+  };
 
   return (
     <>
@@ -13,11 +20,11 @@ const TabsOverview = (props) => {
           <span className="movie-rating__level">
             {(() => {
               switch (true) {
-                case rating >= 0 && rating < 3 : return (`Bad`);
-                case rating >= 3 && rating < 5 : return (`Normal`);
-                case rating >= 5 && rating < 8 : return (`Good`);
-                case rating >= 8 && rating < 10 : return (`Very good`);
-                case rating === 10: return (`Awesome`);
+                case rating >= Ratings.START && rating < Ratings.BAD : return (`Bad`);
+                case rating >= Ratings.BAD && rating < Ratings.NORMAL : return (`Normal`);
+                case rating >= Ratings.NORMAL && rating < Ratings.GOOD : return (`Good`);
+                case rating >= Ratings.GOOD && rating < Ratings.VERY_GOOD : return (`Very good`);
+                case rating === Ratings.VERY_GOOD: return (`Awesome`);
                 default : return null;
               }
             })()}

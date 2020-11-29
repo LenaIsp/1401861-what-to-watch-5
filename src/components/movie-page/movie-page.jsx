@@ -21,12 +21,12 @@ class MoviePage extends PureComponent {
   }
 
   componentDidMount() {
-    this.onPageLoad(this.props.routes.match.params.id);
+    this.onPageLoad(this.props.routes);
   }
 
   componentDidUpdate() {
-    if (Number(this.props.routes.match.params.id) !== this.props.activeFilm.id) {
-      this.onPageLoad(this.props.routes.match.params.id);
+    if (Number(this.props.routes) !== this.props.activeFilm.id) {
+      this.onPageLoad(this.props.routes);
     }
   }
 
@@ -97,7 +97,7 @@ class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   films: PropTypes.array.isRequired,
   onPageLoad: PropTypes.func.isRequired,
-  routes: PropTypes.object.isRequired,
+  routes: PropTypes.string.isRequired,
   reviews: PropTypes.array.isRequired,
   activeFilm: PropTypes.oneOfType([
     PropTypes.shape({

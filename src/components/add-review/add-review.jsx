@@ -9,8 +9,9 @@ import {setDataIsSending} from "../../store/action";
 const REVIEW_RATINGS = [1, 2, 3, 4, 5];
 
 const AddRewiev = (props) => {
-  const {onFormSubmit, onReviewChange, onRatingChange, isDataSending, isDataSendError, isValid, rating, reviewText, films, routes} = props;
-  const filmsId = films[routes.match.params.id - 1];
+  const {onFormSubmit, onReviewChange, onRatingChange, isDataSending, isDataSendError, isValid, rating, reviewText, films, rout} = props;
+
+  const filmsId = films[rout - 1];
   const {id} = filmsId;
 
   const handleFormSubmit = (evt) => {
@@ -39,7 +40,7 @@ const AddRewiev = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={`/films/` + routes.match.params.id}>{filmsId.name}</Link>
+                <Link className="breadcrumbs__link" to={`/films/` + rout}>{filmsId.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -93,7 +94,7 @@ const AddRewiev = (props) => {
 
 AddRewiev.propTypes = {
   films: PropTypes.array.isRequired,
-  routes: PropTypes.object.isRequired,
+  rout: PropTypes.string.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   isDataSending: PropTypes.bool.isRequired,

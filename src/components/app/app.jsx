@@ -38,7 +38,7 @@ const App = () => {
           path="/films/:id?"
           render={(routes) => (
             <MoviePage
-              routes={routes}
+              routes={routes.match.params.id}
             />
           )}
         />
@@ -48,7 +48,7 @@ const App = () => {
           path="/films/:id?/review"
           render={(routes) => {
             return (
-              <AddReviewWrap routes={routes} />
+              <AddReviewWrap rout={routes.match.params.id} />
             );
           }}
         />

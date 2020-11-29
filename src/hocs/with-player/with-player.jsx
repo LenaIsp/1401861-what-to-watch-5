@@ -11,8 +11,8 @@ const withPlayer = (Component) => {
       this._videoRef = createRef();
       this.state = {
         player: `play`,
-        duration: 0,
-        currentTime: 0,
+        duration: `1`,
+        currentTime: `1`,
       };
       this.handleClickPlay = this.handleClickPlay.bind(this);
       this.handleClickPause = this.handleClickPause.bind(this);
