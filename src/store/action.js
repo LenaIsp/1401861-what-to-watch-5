@@ -28,9 +28,9 @@ export const changeCountFilms = (count) => ({
   payload: count
 });
 
-export const loadMovie = (questions) => ({
+export const loadMovie = (films) => ({
   type: ActionType.LOAD_MOVIE,
-  payload: questions,
+  payload: films,
 });
 
 export const loadSingleMovie = (film) => ({

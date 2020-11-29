@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WithPlayer is rendered correctly 1`] = `
+<div>
+  <video
+    className="player__video"
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
+  />
+</div>
+`;

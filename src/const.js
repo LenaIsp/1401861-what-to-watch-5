@@ -20,3 +20,12 @@ export const AppPath = {
   playerFull: `/player/:id`,
   review: `/films/:id/review`
 };
+
+export const APIRoute = {
+  login: `/login`,
+  mylist: `/mylist`,
+  films: `/films`,
+  favorite: `/favorite`,
+  promo: `/films/promo`,
+  comments: `/comments`,
+};

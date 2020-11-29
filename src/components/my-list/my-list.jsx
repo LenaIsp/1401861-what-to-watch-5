@@ -4,11 +4,11 @@ import MovieList from "../movie-list/movie-list";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import {connect} from 'react-redux';
-
 import {fetchFavorites} from '../../store/api-action';
 
-const myList = (props) => {
+const MyList = (props) => {
   const {onFavoritesLoad, favorites} = props;
+
   if (!favorites) {
     return null;
   }
@@ -34,7 +34,7 @@ const myList = (props) => {
   );
 };
 
-myList.propTypes = {
+MyList.propTypes = {
   onFavoritesLoad: PropTypes.func.isRequired,
   favorites: PropTypes.array.isRequired,
 };
@@ -49,5 +49,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFavorites());
   }
 });
-export {myList};
-export default connect(mapStateToProps, mapDispatchToProps)(myList);
+export {MyList};
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

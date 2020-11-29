@@ -73,8 +73,14 @@ Player.propTypes = {
   handleClickFullScreen: PropTypes.func.isRequired,
   player: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
-  duration: PropTypes.number.isRequired,
-  currentTime: PropTypes.number.isRequired,
+  currentTime: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired
+  ]),
+  duration: PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired
+  ]),
 };
 
 export default Player;

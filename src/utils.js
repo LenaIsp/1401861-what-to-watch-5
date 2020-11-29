@@ -32,6 +32,11 @@ export const adapterFilmsToClient = (filmsData) => {
   };
   return adapterFilms;
 };
+
+export const adapterFilm = (data) => {
+  return data.map((film) => adapterFilmsToClient(film));
+};
+
 export const adapterUserToClient = (userData) => {
   const adapterUSer = {
     id: userData.id,
