@@ -32,7 +32,7 @@ class MoviePage extends PureComponent {
 
   render() {
     const {films, activeFilm, reviews} = this.props;
-    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime, isFavorite} = activeFilm;
+    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime, isFavorite, userStatus} = activeFilm;
     const MAX_FILM = 5;
     if (!starring) {
       return null;
@@ -64,7 +64,7 @@ class MoviePage extends PureComponent {
                     <span>Play</span>
                   </Link>
                   <ButtonAddFavorite isFavorite={isFavorite} id={id} isPromo="false"/>
-                  <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link>
+                  {userStatus === `NO_AUTH` ? <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link> : null}
                 </div>
               </div>
             </div>
@@ -99,6 +99,7 @@ MoviePage.propTypes = {
   onPageLoad: PropTypes.func.isRequired,
   routes: PropTypes.string.isRequired,
   reviews: PropTypes.array.isRequired,
+  userStatus: PropTypes.string.isRequired,
   activeFilm: PropTypes.oneOfType([
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -119,10 +120,11 @@ MoviePage.propTypes = {
   ]),
 };
 
-const mapStateToProps = ({GENRE_CHANGE}) => ({
+const mapStateToProps = ({GENRE_CHANGE, USER}) => ({
   films: createMoreLike(GENRE_CHANGE.films, GENRE_CHANGE.activeFilm.genre),
   activeFilm: GENRE_CHANGE.activeFilm,
   reviews: GENRE_CHANGE.reviews,
+  userStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
