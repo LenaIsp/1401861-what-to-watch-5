@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Video from './video';
-import {TEST_MOCK_MOVIE, TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCK_MOVIE, TEST_MOCKS} from "../../test-mock.js";
 
 
 it(`Video is rendered correctly`, () => {

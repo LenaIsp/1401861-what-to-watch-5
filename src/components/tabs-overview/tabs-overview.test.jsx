@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {TEST_MOCK_MOVIE} from "../../__test-mock.js";
+import {TEST_MOCK_MOVIE} from "../../test-mock.js";
 import TabsOverview from './tabs-overview';
 
 

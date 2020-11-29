@@ -14,7 +14,7 @@ import {
   setDataSendError,
 } from "./action";
 
-import {TEST_MOCKS, TEST_MOCK_USER, TEST_MOCK_MOVIE} from "../__test-mock";
+import {TEST_MOCKS, TEST_MOCK_USER, TEST_MOCK_MOVIE} from "../test-mock";
 
 describe(`Action creators work correctly`, () => {
 

@@ -48,7 +48,7 @@ const App = () => {
           path="/films/:id?/review"
           render={(routes) => {
             return (
-              <AddReviewWrap rout={routes.match.params.id} />
+              <AddReviewWrap routes={routes.match.params.id} />
             );
           }}
         />

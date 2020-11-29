@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
 import withValidation from "./with-validation";
-import {TEST_MOCK_COMMENT} from "../../__test-mock.js";
+import {TEST_MOCK_COMMENT} from "../../test-mock.js";
 
 const MockComponent = (props) => {
   const {children} = props;

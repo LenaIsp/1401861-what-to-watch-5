@@ -2,7 +2,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Player from './player';
-import {TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCKS} from "../../test-mock.js";
 
 it(`Player is rendered correctly`, () => {
 

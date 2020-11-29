@@ -79,6 +79,7 @@ export const TEST_MOCKS = {
   state: {
     tabs: `Overview`
   },
+  preventDefault: {preventDefault() {}},
 };
 
 export const TEST_MOCK_STORE = {

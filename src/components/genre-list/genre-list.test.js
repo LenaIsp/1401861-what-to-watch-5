@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCKS} from "../../test-mock.js";
 import GenreList from "./genre-list";
 import {MemoryRouter} from "react-router-dom";
 

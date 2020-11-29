@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {TEST_MOCKS, TEST_MOCK_COMMENT, TEST_MOCK_MOVIE} from "../../__test-mock.js";
+import {TEST_MOCKS, TEST_MOCK_COMMENT, TEST_MOCK_MOVIE} from "../../test-mock.js";
 import Tabs from './tabs';
 
 it(`ShowMore is rendered correctly`, () => {

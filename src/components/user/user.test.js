@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import User from "./user";
-import {TEST_MOCK_STORE, TEST_MOCK_USER} from "../../__test-mock.js";
+import {TEST_MOCK_STORE, TEST_MOCK_USER} from "../../test-mock.js";
 import {MemoryRouter} from "react-router-dom";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";

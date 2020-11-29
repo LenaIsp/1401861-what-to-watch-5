@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import ShowMore from './show-more';
-import {TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCKS} from "../../test-mock.js";
 
 
 it(`ShowMore is rendered correctly`, () => {

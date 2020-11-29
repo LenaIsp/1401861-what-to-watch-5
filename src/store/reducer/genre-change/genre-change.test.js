@@ -2,7 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../../services/api";
 import {ActionType} from "../../action";
 import {fetchMovieList, fetchSingleMovie, fetchFavorites, fetchMoviePromo, fetchComments} from "../../api-action";
-import {TEST_MOCK_COMMENT} from "../../../__test-mock";
+import {TEST_MOCK_COMMENT} from "../../../test-mock";
 import {adapterFilmsToClient, adapterFilm} from "../../../utils";
 
 const api = createAPI(() => {});

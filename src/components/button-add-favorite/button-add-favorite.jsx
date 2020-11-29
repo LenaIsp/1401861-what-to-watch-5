@@ -14,10 +14,14 @@ const InList = {
 };
 
 const ButtonAddFavorite = (props) => {
-  const {id, isFavorite, isPromo, onFavoriteClick} = props;
+  const {id, isFavorite, isPromo, onFavoriteClick, userStatus} = props;
   const handleClick = () => {
     onFavoriteClick(id, !isFavorite ? 1 : 0, isPromo);
   };
+
+  if (userStatus === `NO_AUTH`) {
+    return null;
+  }
 
   return (
     <button
@@ -37,8 +41,12 @@ ButtonAddFavorite.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   isPromo: PropTypes.string.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
+  userStatus: PropTypes.string.isRequired,
 };
 
+const mapStateToProps = ({USER}) => ({
+  userStatus: USER.authorizationStatus,
+});
 const mapDispatchToProps = (dispatch) => ({
   onFavoriteClick(id, status, isPromo) {
     dispatch(addFavorite(id, status, isPromo));
@@ -46,4 +54,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {ButtonAddFavorite};
-export default connect(null, mapDispatchToProps)(ButtonAddFavorite);
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonAddFavorite);

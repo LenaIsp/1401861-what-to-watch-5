@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import AddRewiev from "./add-review";
-import {TEST_MOCK_STORE, TEST_MOCKS, TEST_MOCK_COMMENT, TEST_MOCK_USER} from "../../__test-mock.js";
+import {TEST_MOCK_STORE, TEST_MOCKS, TEST_MOCK_COMMENT, TEST_MOCK_USER} from "../../test-mock.js";
 import {MemoryRouter} from "react-router-dom";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
@@ -23,7 +23,7 @@ describe(`AddRewiev`, () => {
               isDataSendError ={false}
               rating={TEST_MOCK_COMMENT.rating}
               reviewText={TEST_MOCK_COMMENT.reviewText}
-              rout={`1`}
+              routes={`1`}
               films={TEST_MOCKS.movies}
               filmsId={TEST_MOCKS.movie}
               id={`1`}

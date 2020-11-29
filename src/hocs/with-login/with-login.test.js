@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
 import withLogin from "./with-login";
-import {TEST_MOCKS, TEST_MOCK_USER} from "../../__test-mock.js";
+import {TEST_MOCKS, TEST_MOCK_USER} from "../../test-mock.js";
 
 const MockComponent = (props) => {
   const {children} = props;

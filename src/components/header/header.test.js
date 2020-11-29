@@ -4,7 +4,7 @@ import Header from "./header";
 import {MemoryRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import configureMockStore from "redux-mock-store";
-import {TEST_MOCK_STORE} from "../../__test-mock.js";
+import {TEST_MOCK_STORE} from "../../test-mock.js";
 
 const mockStore = configureMockStore();
 const store = mockStore(TEST_MOCK_STORE);
