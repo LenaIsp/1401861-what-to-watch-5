@@ -31,8 +31,8 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {films, activeFilm, reviews} = this.props;
-    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime, isFavorite, userStatus} = activeFilm;
+    const {films, activeFilm, reviews, userStatus} = this.props;
+    const {id, name, posterImage, genre, released, rating, description, director, starring, backgroundImage, backgroundColor, scoresCount, runTime, isFavorite} = activeFilm;
     const MAX_FILM = 5;
     if (!starring) {
       return null;
@@ -64,7 +64,7 @@ class MoviePage extends PureComponent {
                     <span>Play</span>
                   </Link>
                   <ButtonAddFavorite isFavorite={isFavorite} id={id} isPromo="false"/>
-                  {userStatus === `NO_AUTH` ? <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link> : null}
+                  {userStatus === `NO_AUTH` ? null : <Link href="add-review.html" className="btn movie-card__button" to={`/films/` + id + `/review`}>Add review</Link>}
                 </div>
               </div>
             </div>

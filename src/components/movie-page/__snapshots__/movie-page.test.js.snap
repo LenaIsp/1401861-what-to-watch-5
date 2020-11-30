@@ -143,6 +143,13 @@ exports[`MoviePage Should MoviePage render correctly 1`] = `
                 In list
               </span>
             </button>
+            <a
+              className="btn movie-card__button"
+              href="/films/1/review"
+              onClick={[Function]}
+            >
+              Add review
+            </a>
           </div>
         </div>
       </div>
